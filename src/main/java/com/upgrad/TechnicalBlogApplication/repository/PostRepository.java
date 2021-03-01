@@ -1,6 +1,7 @@
 package com.upgrad.TechnicalBlogApplication.repository;
 
 import com.upgrad.TechnicalBlogApplication.model.Post;
+
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
@@ -36,5 +37,22 @@ public class PostRepository {
             transaction.rollback();
         }
 
+    }
+    public void deletePost(Integer postId)
+    {
+        EntityManager entityManager=entityManagerFactory.createEntityManager();
+        EntityTransaction transaction=entityManager.getTransaction();
+        try
+        {
+            transaction.begin();
+            Post post=entityManager.find(Post.class,postId);
+            entityManager.remove(post);
+            transaction.commit();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            transaction.rollback();
+        }
     }
 }

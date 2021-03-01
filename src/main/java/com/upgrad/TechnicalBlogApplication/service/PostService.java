@@ -27,4 +27,8 @@ private PostRepository postRepository;
         postRepository.createPost(newPost);
 
     }
+    public void deletePost(Integer postId)
+    {
+        postRepository.deletePost(postId);
+    }
 }

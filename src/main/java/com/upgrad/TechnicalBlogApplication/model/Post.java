@@ -6,9 +6,11 @@ import java.util.Date;
 @Entity
 @Table(name="posts")
 public class Post {
+
+
     // components of the post
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id")
     private Integer id;
     @Column(name="title")
@@ -20,6 +22,13 @@ public class Post {
     private Date date;
 
     // Getters and Setter
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getTitle() {
         return title;
     }
