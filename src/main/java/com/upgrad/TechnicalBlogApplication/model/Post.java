@@ -1,13 +1,13 @@
 package com.upgrad.TechnicalBlogApplication.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="posts")
 public class Post {
-
-
     // components of the post
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -20,6 +20,13 @@ public class Post {
     private String body;
     @Column(name="date")
     private Date date;
+
+    //RELATIONSHIPS
+    @ManyToOne(fetch=FetchType.EAGER)
+    private User user;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Category> categories=new ArrayList<>();
 
     // Getters and Setter
     public Integer getId() {
