@@ -10,14 +10,20 @@ public class UserService {
     // Contain all the business logic and communicate to db
     @Autowired
     private UserRepository userRepository;
-    public boolean login(User user) {
-        if(user.getUsername().equals("ashish_kumar") && user.getPassword().equals("chitkara"))
-            return true;
-        else
-            return false;
+    public User login(User user) {
+       User existingUser=userRepository.checkCredentials(user.getUsername(),user.getPassword());
+       if(existingUser==null)
+       {
+           return null;
+       }
+       else
+       {
+           return existingUser;
+       }
     }
     public void registerUser(User newUser)
     {
-       userRepository.registerUser(newUser);
+
+        userRepository.registerUser(newUser);
     }
 }

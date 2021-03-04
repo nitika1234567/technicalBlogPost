@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 public class PostController {
-    // IOC =Inversion Of Control| DEpendency injection
+    // IOC =Inversion Of Control| Dependency injection
     @Autowired
     private PostService postService;
     @RequestMapping("/posts")

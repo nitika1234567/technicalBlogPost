@@ -29,11 +29,17 @@ public class UserController {
     // POST Request to "/users/login"
     @RequestMapping(method = RequestMethod.POST, value = "/users/login")
     public String loginUser(User user) {
+        User existingUser=userService.login(user);
         // check if the credentials match
-        if(userService.login(user)) {
-            return "redirect:/posts";
-        } else {
+        if(existingUser==null)
+        {
+            System.out.println("User does not exist");
             return "users/login";
+        }
+        else
+        {
+            System.out.println("User Found!");
+            return "redirect:/posts";
         }
     }
 
